@@ -45,7 +45,7 @@ const data = [
 		description: 'Description 7',
 	}
 ].map(d => Object.assign(d, {
-	image: {uri: 'http://facebook.github.io/react/img/logo_og.png'}
+	image: {uri: 'https://s3-us-west-2.amazonaws.com/admitriyev-icons/online-shop-10.png'}
 }));
 
 class Items extends Component {

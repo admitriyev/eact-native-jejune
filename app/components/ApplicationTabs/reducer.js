@@ -7,7 +7,7 @@ const simpleIcon = {
 
 const tabs = {
   routes: [
-    { key: 'feed', icon: simpleIcon, title: 'Items' },
+    { key: 'feed', icon: simpleIcon, title: 'Products' },
     { key: 'notifications', icon: simpleIcon, title: 'Notifications' },
     { key: 'settings', icon: simpleIcon, title: 'Settings' }
   ],

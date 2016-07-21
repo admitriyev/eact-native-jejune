@@ -67,7 +67,7 @@ class ApplicationTabs extends Component {
 		const selectedTab = this.props.navigation.routes[this.props.navigation.index];
 		const actions = [{
 			title: 'New Item',
-			icon: { uri: 'http://facebook.github.io/react/img/logo_og.png' },
+			icon: { uri: 'https://s3-us-west-2.amazonaws.com/admitriyev-icons/online-shop-6.png' },
 			show: 'always',
 			showWithText: false
 		}];
