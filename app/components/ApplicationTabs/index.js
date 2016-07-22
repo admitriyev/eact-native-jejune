@@ -1,7 +1,5 @@
 import { View, Text, TouchableHighlight } from 'react-native';
 import React, { Component } from 'react';
-import DrawerLayoutAndroid from 'DrawerLayoutAndroid';
-import ToolbarAndroid from 'ToolbarAndroid';
 import styles from './styles';
 import Feed from '../Feed';
 import { connect } from 'react-redux';
@@ -52,18 +50,6 @@ class ApplicationTabs extends Component {
 			</View>
 		);
 
-		return (
-			<DrawerLayoutAndroid
-				ref={(drawer) => { this.drawer = drawer; }}
-				drawerWidth={300}
-				drawerPosition={DrawerLayoutAndroid.positions.Left}
-				renderNavigationView={() => navigationView}>
-				{this._renderApp()}
-			</DrawerLayoutAndroid>
-		);
-	}
-
-	_renderApp() {
 		const selectedTab = this.props.navigation.routes[this.props.navigation.index];
 		const actions = [{
 			title: 'New Item',
@@ -71,16 +57,9 @@ class ApplicationTabs extends Component {
 			show: 'always',
 			showWithText: false
 		}];
+
 		return (
 			<View style={{ flex: 1 }}>
-				<ToolbarAndroid
-					navIcon={require('./img/hamburger.png')}
-					actions={actions}
-					onIconClicked={() => this.drawer.openDrawer()}
-					style={styles.toolbar}
-					title={selectedTab.title}
-					onActionSelected={this._onActionSelected.bind(this)}
-				/>
 				{this._renderTabContent(selectedTab)}
 			</View>
 		);

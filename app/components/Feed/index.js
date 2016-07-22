@@ -5,7 +5,7 @@
 */
 
 import { View, Platform, NavigationExperimental,
-	TouchableHighlight, Image } from 'react-native';
+	TouchableHighlight, Image, ScrollView } from 'react-native';
 import React, { Component } from 'react';
 import styles from './styles';
 import { connect } from 'react-redux';
@@ -96,9 +96,9 @@ class Feed extends Component {
 		if (props.scene.route.key === 'list') {
 			const marginTop = Platform.OS === 'ios' ? NavigationHeader.HEIGHT : 0;
 			return (
-				<View style={{ marginTop }}>
+				<ScrollView style={{ marginTop }}>
 					<Items onSelectItem={this._onSelectItem.bind(this)} />
-				</View>
+				</ScrollView>
 			);
 		}
 
