@@ -96,9 +96,14 @@ class Feed extends Component {
 		if (props.scene.route.key === 'list') {
 			const marginTop = Platform.OS === 'ios' ? NavigationHeader.HEIGHT : 0;
 			return (
-				<ScrollView style={{ marginTop }}>
-					<Items onSelectItem={this._onSelectItem.bind(this)} />
-				</ScrollView>
+				<View style={{ marginTop }}>
+					<Image
+						source={{uri: 'https://s3-us-west-2.amazonaws.com/admitriyev-icons/online-shop.png'}} 
+						style={styles.episode} />
+					<Image
+						source={{uri: 'https://s3-us-west-2.amazonaws.com/admitriyev-icons/online-shop.png'}}
+						style={styles.product} />
+				</View>
 			);
 		}
 

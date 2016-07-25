@@ -18,9 +18,9 @@ export default StyleSheet.create({
 	},
 	cellImage: {
 		backgroundColor: '#dddddd',
-		height: 60,
+		height: 120,
 		marginRight: 10,
-		width: 60,
+		width: 120,
 	},
 	cell: {
 		borderBottomWidth: StyleSheet.hairlineWidth

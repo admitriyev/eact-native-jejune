@@ -12,5 +12,15 @@ export default StyleSheet.create({
 		width: 24,
 		margin: Platform.OS === 'ios' ? 10 : 16,
 		resizeMode: 'contain'
+	},
+	episode: {
+		flex: 1,
+		justifyContent: 'center',
+		height: 100
+	},
+	product: {
+		flex: 1,
+		justifyContent: 'center',
+		height: 100
 	}
 });
