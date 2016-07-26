@@ -16,11 +16,11 @@ export default StyleSheet.create({
 	episode: {
 		flex: 1,
 		justifyContent: 'center',
-		height: 100
+		resizeMode: 'contain'
 	},
 	product: {
 		flex: 1,
 		justifyContent: 'center',
-		height: 100
+		resizeMode: 'contain'
 	}
 });

@@ -5,7 +5,7 @@
 */
 
 import { View, Platform, NavigationExperimental,
-	TouchableHighlight, Image, ScrollView } from 'react-native';
+	TouchableHighlight, Image, ScrollView, Dimensions } from 'react-native';
 import React, { Component } from 'react';
 import styles from './styles';
 import { connect } from 'react-redux';
@@ -26,6 +26,7 @@ const NavigationHeaderBackButton = require('NavigationHeaderBackButton');
 
 class Feed extends Component {
 	render() {
+		console.log("Feed props" + JSON.stringify(this.props));
 		return (
 			<NavigationCardStack
 				onNavigate={ () => {} }
@@ -95,14 +96,20 @@ class Feed extends Component {
 	_renderScene(props) {
 		if (props.scene.route.key === 'list') {
 			const marginTop = Platform.OS === 'ios' ? NavigationHeader.HEIGHT : 0;
+			var {height, width} = Dimensions.get('window');
+			console.log("props" + JSON.stringify(props));
 			return (
 				<View style={{ marginTop }}>
-					<Image
-						source={{uri: 'https://s3-us-west-2.amazonaws.com/admitriyev-icons/online-shop.png'}} 
-						style={styles.episode} />
-					<Image
-						source={{uri: 'https://s3-us-west-2.amazonaws.com/admitriyev-icons/online-shop.png'}}
-						style={styles.product} />
+					<TouchableHighlight onPress={this._onPressEpisode}>
+						<Image
+							source={{uri: props.scene.route.episode}}
+							style={[styles.episode, {height:height / 2}]} />
+					</TouchableHighlight>
+					<TouchableHighlight onPress={this._onPressProduct}>
+						<Image
+							source={{uri: props.scene.route.product}}
+							style={[styles.product, {height:height / 2}]} />
+					</TouchableHighlight>
 				</View>
 			);
 		}
@@ -135,6 +142,16 @@ class Feed extends Component {
 			showBackButton: true
 		}, navigation.key));
 	}
+
+	_onPressEpisode() {
+		const { dispatch } = this.props;
+
+		dispatch(pushRoute({
+			key: 'new',
+			title: 'Main Screen',
+			showBackButton: true
+		}, 'global'));
+	}
 }
 
 function mapDispatchToProps(dispatch) {
@@ -145,7 +162,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
 	return {
-		navigation: state.get('feed')
+		navigation: state.get('feed'),
 	};
 }
 
