@@ -26,9 +26,10 @@ const NavigationHeaderBackButton = require('NavigationHeaderBackButton');
 
 class Feed extends Component {
 	render() {
-		console.log("Feed props" + JSON.stringify(this.props));
+		console.log("Feed props - " + JSON.stringify(this.props));
 		return (
 			<NavigationCardStack
+				{...this.props}
 				onNavigate={ () => {} }
 				direction={'horizontal'}
 				navigationState={this.props.navigation}
@@ -97,17 +98,17 @@ class Feed extends Component {
 		if (props.scene.route.key === 'list') {
 			const marginTop = Platform.OS === 'ios' ? NavigationHeader.HEIGHT : 0;
 			var {height, width} = Dimensions.get('window');
-			console.log("props" + JSON.stringify(props));
+			console.log("_renderScene props - " + JSON.stringify(props));
 			return (
 				<View style={{ marginTop }}>
-					<TouchableHighlight onPress={this._onPressEpisode}>
+					<TouchableHighlight onPress={this._onPressEpisode.bind(this)}>
 						<Image
-							source={{uri: props.scene.route.episode}}
+							source={{uri: props.navigationState.episode}}
 							style={[styles.episode, {height:height / 2}]} />
 					</TouchableHighlight>
 					<TouchableHighlight onPress={this._onPressProduct}>
 						<Image
-							source={{uri: props.scene.route.product}}
+							source={{uri: props.navigationState.product}}
 							style={[styles.product, {height:height / 2}]} />
 					</TouchableHighlight>
 				</View>
@@ -144,13 +145,9 @@ class Feed extends Component {
 	}
 
 	_onPressEpisode() {
+		console.log('_onPressEpisode props ' + JSON.stringify(this.props));
 		const { dispatch } = this.props;
-
-		dispatch(pushRoute({
-			key: 'new',
-			title: 'Main Screen',
-			showBackButton: true
-		}, 'global'));
+		dispatch({type: 'NEXT_EPISODE'})
 	}
 }
 
@@ -161,8 +158,10 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
+	console.log('mapStateToProps state - ' + JSON.stringify(state))
 	return {
 		navigation: state.get('feed'),
+		episode: state.get('episodeReducer')
 	};
 }
 
